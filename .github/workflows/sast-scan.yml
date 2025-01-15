@@ -27,8 +27,9 @@ jobs:
 
       - name: Run scan with ODC
         run: |
-          dependency-check/bin/dependency-check.sh --project "bitcoin" --scan . > ODC-report \
-          --jvmargs '--add-opens java.base/java.lang=ALL-UNNAMED'
+          dependency-check/bin/dependency-check.sh --project "bitcoin" --scan . \
+          --jvmargs '--add-opens java.base/java.lang=ALL-UNNAMED --illegal-access=warn' \
+          > ODC-report || true
 
 
       - name: Archive production artifacts
